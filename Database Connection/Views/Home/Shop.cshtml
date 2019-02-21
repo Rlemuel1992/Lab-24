@@ -1,0 +1,117 @@
+﻿@using System.Data.SqlClient;
+@using Dapper
+
+@using (SqlConnection connection = new SqlConnection("Data Source=LAPTOP-6M65FED7\\SQLEXPRESS;Initial Catalog=Database_Connection.Models.ItemDBContext;Integrated Security=True"))
+{
+	connection.Open();
+	var selectQueryString = "SELECT * FROM Products";
+
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Shop</title>
+		<style>
+			table, th, td {
+				border: solid 1px #bbbbbb;
+				border-collapse: collapse;
+				padding: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Ron's Coffee Shop</h1>
+		<table>
+			<thead>
+				<tr>
+				
+					<th>Products</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Add 1 to cart</th>
+					<th>Add 5 to cart</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var row in connection.Query(selectQueryString))
+				{
+				<tr>
+					<td>@row.ProductName</td>
+					<td>@row.Description</td>
+					<td>@row.Price</td>
+					<td><a href="/Home/AddItem?Quantity=1&ItemName=@row.ProductName"> Add 1</a></td>
+					<td><a href="/Home/AddItem?Quantity=5&ItemName=@row.ProductName"> Add 5</a></td>
+
+				</tr>
+				}
+			</tbody>
+		</table>
+	</body>
+</html>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@{
+
+			var db = Database_Connection.Models.ItemDBContext;
+			//("SmallBakery");
+			var selectQueryString = "SELECT * FROM Product ORDER BY Name";
+
+	}
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Small Bakery Products</title>
+		<style>
+			table, th, td {
+				border: solid 1px #bbbbbb;
+				border-collapse: collapse;
+				padding: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Small Bakery Products</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Product</th>
+					<th>Description</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var row in db.Query(selectQueryString))
+				{
+					<tr>
+						<td>@row.Id</td>
+						<td>@row.Name</td>
+						<td>@row.Description</td>
+						<td>@row.Price</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</body>
+	</html>*@

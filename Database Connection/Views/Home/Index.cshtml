@@ -1,0 +1,17 @@
+﻿<h2>Welcome to my coffee shop!</h2>
+@if (Session["CurrentUser"] == null)
+{
+<p>@Html.ActionLink("Login", "Login", "Home")</p>
+<p>Or </p>
+<p>@Html.ActionLink("Register here!", "Create", "Users")</p>
+}
+
+else
+{
+	
+		<p>Hello @Session["CurrentUser"]! </p>
+
+		@Html.ActionLink("Shop now!", "Shop", "Home")
+	
+	
+}

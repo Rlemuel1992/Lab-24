@@ -1,0 +1,15 @@
+﻿
+@foreach (var item in ViewBag.ShoppingList)
+{
+
+	<p>
+		You bought @item.ProductName at $@item.Price
+		<a href="@Url.Action("RemoveItem", "Home", new { id = item.ProductName })">Remove</a>
+	</p>
+
+}
+<p>
+	Would you like to remove all items?
+	<a href="@Url.Action("RemoveAll", "Home")">Yes</a>
+</p>
+<p>Your grand total comes up to $@ViewBag.GrandTotal</p>
